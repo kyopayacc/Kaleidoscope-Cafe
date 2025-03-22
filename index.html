@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kaleidoscope Cafe</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Anybody:wght@300;600&display=swap');
@@ -27,7 +27,7 @@
 
         /* Static Navigation */
         .top-nav {
-            padding: 1rem 2rem;
+            padding: 1rem;
             background: var(--kale-green);
             display: flex;
             justify-content: space-between;
@@ -40,7 +40,7 @@
 
         .nav-links {
             display: flex;
-            gap: 3rem;
+            gap: 1.5rem;
             align-items: center;
         }
 
@@ -50,14 +50,28 @@
             font-weight: 600;
             letter-spacing: 1px;
             transition: all 0.3s;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem;
             border-radius: 25px;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .top-nav a:hover {
             background: rgba(255,255,255,0.1);
             transform: translateY(-2px);
+        }
+
+        /* Hamburger Menu for Mobile */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: var(--cream);
         }
 
         /* Shopping Cart Icon */
@@ -92,11 +106,11 @@
             justify-content: center;
             flex-direction: column;
             text-align: center;
-            padding: 2rem;
+            padding: 1rem;
         }
 
         h1 {
-            font-size: 5rem;
+            font-size: 3rem;
             text-transform: uppercase;
             margin: 0;
             letter-spacing: 0.1em;
@@ -122,15 +136,15 @@
         
         /* Menu Section */
         .menu-section {
-            padding: 8rem 2rem 4rem;
+            padding: 4rem 1rem;
             min-height: 100vh;
             background: rgba(237,233,208,0.97);
         }
 
         .menu-category {
             max-width: 1200px;
-            margin: 0 auto 4rem;
-            padding: 2rem;
+            margin: 0 auto 2rem;
+            padding: 1rem;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -138,13 +152,13 @@
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 1rem 0;
         }
 
         .menu-item {
-            padding: 1.5rem;
+            padding: 1rem;
             border-left: 4px solid var(--kale-green);
             transition: transform 0.3s;
             background: rgba(255,255,255,0.9);
@@ -153,13 +167,13 @@
         .menu-item h3 {
             color: var(--kale-green); 
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
 
         .menu-item p {
             color: var(--kale-green); 
             margin: 5px 0;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         
         .menu-item:hover {
@@ -170,12 +184,12 @@
             float: right;
             color: var(--kale-green);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         /* Mission Section */
         .mission-section {
-            padding: 8rem 2rem;
+            padding: 4rem 1rem;
             min-height: 100vh;
             background: var(--kale-green);
             display: flex;
@@ -185,24 +199,24 @@
         .mission-card {
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1rem;
             background: rgba(255,255,255,0.1);
             border-radius: 15px;
             backdrop-filter: blur(10px);
         }
 
         .mission-card h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
 
         .mission-card p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             line-height: 1.6;
         }
 
         /* Contact Section */
         .contact-section {
-            padding: 4rem 2rem;
+            padding: 2rem 1rem;
             background: var(--cream);
             color: var(--kale-green);
             text-align: center;
@@ -210,12 +224,12 @@
         }
 
         .contact-section h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .contact-section p {
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         /* Animations */
@@ -234,11 +248,11 @@
         button {
             background: var(--kale-green);
             color: var(--cream);
-            padding: 1rem 2rem;
+            padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: background 0.3s;
         }
 
@@ -253,7 +267,7 @@
             right: 20px;
             display: flex;
             flex-direction: column;
-            gap: 10px; /* Space between notifications */
+            gap: 10px;
             z-index: 1000;
         }
 
@@ -261,7 +275,7 @@
         .notification {
             background: var(--kale-green);
             color: var(--cream);
-            padding: 1rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             opacity: 0;
@@ -273,22 +287,71 @@
             opacity: 1;
             visibility: visible;
         }
+
+        /* Media Queries for Mobile */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 60px;
+                right: 1rem;
+                background: var(--kale-green);
+                padding: 1rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item {
+                padding: 1rem;
+            }
+
+            .mission-card h2 {
+                font-size: 1.2rem;
+            }
+
+            .mission-card p {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Static Navigation -->
     <nav class="top-nav">
-        <div class="nav-links">
+        <div class="nav-links" id="nav-links">
             <a href="#home">Home</a>
             <a href="#menu">Menu</a>
             <a href="#mission">Mission</a>
             <a href="#contact">Contact</a>
-            <a href="references.html">References</a> <!-- New References link -->
+            <a href="references.html">References</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
         <!-- Shopping Cart Icon -->
         <a href="cart.html" class="cart-icon">
             🛒
-            <span class="cart-count" id="cart-count">0</span> <!-- Cart item count -->
+            <span class="cart-count" id="cart-count">0</span>
         </a>
     </nav>
 
@@ -300,7 +363,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <h1 class="fade-in">Kaleidoscope Cafe</h1>
-        <p class="fade-in" style="font-size: 1.5rem; max-width: 600px; margin: 1rem;">
+        <p class="fade-in" style="font-size: 1.2rem; max-width: 90%; margin: 1rem;">
             Where familiar flavors meet plant-powered possibilities
         </p>
         <div class="scroll-prompt fade-in">↓</div>
@@ -309,7 +372,7 @@
     <!-- Menu Section -->
     <section id="menu" class="menu-section">
         <div class="menu-category fade-in">
-            <h2 style="color: var(--kale-green); margin-bottom: 2rem;">☕ Drinks & Smoothies</h2>
+            <h2 style="color: var(--kale-green); margin-bottom: 1rem;">☕ Drinks & Smoothies</h2>
             <div class="menu-grid">
                 <div class="menu-item">
                     <h3>Green Revival Juice <span class="price">$5.50</span></h3>
@@ -330,7 +393,7 @@
         </div>
 
         <div class="menu-category fade-in">
-            <h2 style="color: var(--kale-green); margin-bottom: 2rem;">🥗 Starters & Shares</h2>
+            <h2 style="color: var(--kale-green); margin-bottom: 1rem;">🥗 Starters & Shares</h2>
             <div class="menu-grid">
                 <div class="menu-item">
                     <h3>Triple Dip Trio <span class="price">$8.50</span></h3>
@@ -351,7 +414,7 @@
         </div>
 
         <div class="menu-category fade-in">
-            <h2 style="color: var(--kale-green); margin-bottom: 2rem;">🍲 Main Events</h2>
+            <h2 style="color: var(--kale-green); margin-bottom: 1rem;">🍲 Main Events</h2>
             <div class="menu-grid">
                 <div class="menu-item">
                     <h3>Spaghetti Squash Primavera <span class="price">$14.00</span></h3>
@@ -374,12 +437,12 @@
             <p>
                 Stay sustainable, welcoming people into plant-based meals by offering alternatives to classic meals while not having too far-out dishes that might scare people off. Create a place for people to connect and share experiences together, fostering a warm and inviting atmosphere where everyone feels at home. Just like Panera, but with a greener twist.
             </p>
-            <div style="margin-top: 2rem;">
+            <div style="margin-top: 1rem;">
                 <h3>Why We Exist</h3>
                 <ul style="list-style: none; padding: 0;">
-                    <li style="margin: 1rem 0;">✓ Comfort food without compromise</li>
-                    <li style="margin: 1rem 0;">✓ Community tables & free WiFi</li>
-                    <li style="margin: 1rem 0;">✓ Weekly vegan baking workshops</li>
+                    <li style="margin: 0.5rem 0;">✓ Comfort food without compromise</li>
+                    <li style="margin: 0.5rem 0;">✓ Community tables & free WiFi</li>
+                    <li style="margin: 0.5rem 0;">✓ Weekly vegan baking workshops</li>
                 </ul>
             </div>
         </div>
@@ -391,7 +454,7 @@
             <h2>Find Your Seat</h2>
             <p>123 Green Leaf Lane<br>
             Open Daily 7AM-9PM</p>
-            <div style="margin: 2rem 0;">
+            <div style="margin: 1rem 0;">
                 <a href="tel:123-456-7890" style="color: var(--kale-green); text-decoration: none;">☎ (123) 456-7890</a><br>
                 <a href="mailto:hello@kaleidoscope.cafe" style="color: var(--kale-green); text-decoration: none;">📩 hello@kaleidoscope.cafe</a>
             </div>
@@ -422,6 +485,14 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
 
         // Shopping Cart Functionality
