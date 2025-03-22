@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Winky Sans', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f4f4f4;
+        }
+
+        .top-nav {
+            width: 100%;
+            background: rgb(72, 106, 71);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            z-index: 1000;
+        }
+
+        .logo {
+            height: 80px;
+            width: auto;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 100px;
+        }
+
+        .menu, .cart {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .menu {
+            width: 50%;
+        }
+
+        .cart {
+            width: 40%;
+            background: #ddd;
+            font-family: 'Winky Sans', sans-serif;
+        }
+
+        .menu-item, .cart-item {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.3s ease, background 0.3s ease, margin-bottom 0.3s ease;
+        }
+
+        .menu-item:hover, .cart-item:hover {
+            transform: scale(1.05);
+            background: #e0f7fa;
+            margin-bottom: 120px; /* Push the next item down */
+        }
+
+        button {
+            cursor: pointer;
+            padding: 5px 10px;
+            border: none;
+            background: rgb(72, 106, 71);
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4caf50;
+        }
+
+        .remove-btn {
+            background: #f44336;
+            color: white;
+            font-size: 14px;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background: #e53935;
+        }
+
+        /* Tooltip Style */
+        .item-info, .cart-item-info {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        }
+
+        .menu-item:hover .item-info, .cart-item:hover .cart-item-info {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <a href="index.html">
+            <img src="KALEIDASCOPE CAFE.png" alt="KALEIDASCOPE CAFE Logo" class="logo">
+        </a>
+        <div>Welcome to Our Café</div>
+    </div>
+
+    <div class="container">
+        <div class="menu">
+            <h2>☕ Drinks & Smoothies</h2>
+            <div class="menu-item">
+                <span>Green Revival Juice - $5.50</span>
+                <button onclick="addToCart('Green Revival Juice', 5.50)">Add</button>
+                <div class="item-info">
+                    <strong>Description:</strong><br> Fresh green juice with spinach, kale, and apple.
+                </div>
+            </div>
+            <div class="menu-item">
+                <span>Sunrise Smoothie - $6.75</span>
+                <button onclick="addToCart('Sunrise Smoothie', 6.75)">Add</button>
+                <div class="item-info">
+                    <strong>Description:</strong><br> A blend of orange, mango, and pineapple.
+                </div>
+            </div>
+            <div class="menu-item">
+                <span>Chai Latte - $4.50</span>
+                <button onclick="addToCart('Chai Latte', 4.50)">Add</button>
+                <div class="item-info">
+                    <strong>Description:</strong><br> Spiced tea with steamed milk and a touch of sweetness.
+                </div>
+            </div>
+            
+            <h2>🍲 Main Events</h2>
+            <div class="menu-item">
+                <span>Spaghetti Squash Primavera - $14.00</span>
+                <button onclick="addToCart('Spaghetti Squash Primavera', 14.00)">Add</button>
+                <div class="item-info">
+                    <strong>Description:</strong><br> Roasted spaghetti squash with a fresh vegetable medley.
+                </div>
+            </div>
+            <div class="menu-item">
+                <span>Stuffed Bell Peppers - $13.50</span>
+                <button onclick="addToCart('Stuffed Bell Peppers', 13.50)">Add</button>
+                <div class="item-info">
+                    <strong>Description:</strong><br> Bell peppers stuffed with quinoa and vegetables.
+                </div>
+            </div>
+        </div>
+
+        <div class="cart">
+            <h2>Shopping Cart</h2>
+            <ul id="cart-items"></ul>
+            <h3>Total: $<span id="total">0.00</span></h3>
+            <button onclick="clearCart()">Remove All Orders</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function addToCart(item, price) {
+            const existingItem = cart.find(cartItem => cartItem.item === item);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ item, price, quantity: 1 });
+            }
+            saveCart();
+            updateCart();
+        }
+
+        function removeOneFromCart(item) {
+            const existingItem = cart.find(cartItem => cartItem.item === item);
+            if (existingItem) {
+                existingItem.quantity -= 1;
+                if (existingItem.quantity === 0) {
+                    cart = cart.filter(cartItem => cartItem.item !== item);
+                }
+            }
+            saveCart();
+            updateCart();
+        }
+
+        function clearCart() {
+            cart = [];
+            saveCart();
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartList = document.getElementById('cart-items');
+            const totalSpan = document.getElementById('total');
+            cartList.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((cartItem) => {
+                total += cartItem.price * cartItem.quantity;
+                const li = document.createElement('li');
+                li.classList.add('cart-item');
+                li.innerHTML = `
+                    ${cartItem.item} - $${cartItem.price.toFixed(2)} 
+                    <span> x${cartItem.quantity}</span>
+                    <button class="remove-btn" onclick="removeOneFromCart('${cartItem.item}')">Remove One</button>
+                    <div class="cart-item-info">
+                        <strong>Price:</strong> $${cartItem.price.toFixed(2)}<br>
+                        <strong>Quantity:</strong> ${cartItem.quantity}
+                    </div>
+                `;
+                cartList.appendChild(li);
+            });
+
+            totalSpan.textContent = total.toFixed(2);
+        }
+
+        // Load the cart when the page loads
+        updateCart();
+    </script>
+</body>
+</html>

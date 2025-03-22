@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaleidoscope Cafe</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anybody:wght@300;600&display=swap');
+        
+        :root {
+            --kale-green: rgba(72,106,71);
+            --cream: rgba(237,233,208);
+            --smooth-brown: #8B7355;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Anybody', sans-serif;
+            background: linear-gradient(to bottom, 
+                rgba(0,0,0,0) 60%,
+                var(--kale-green) 100%
+            ), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920') fixed;
+            background-size: cover;
+            color: var(--cream);
+            scroll-behavior: smooth;
+        }
+
+        /* Static Navigation */
+        .top-nav {
+            padding: 1rem 2rem;
+            background: var(--kale-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: static;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 1.2rem;
+        }
+
+        .top-nav a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Shopping Cart Icon */
+        .cart-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            background: red;
+            color: white;
+            font-size: 0.9rem;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 5rem;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 0.1em;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+            color: var(--cream);
+        }
+
+        .scroll-prompt {
+            position: absolute;
+            bottom: 2rem;
+            animation: bounce 2s infinite;
+            font-size: 2rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 span.kale {
+            color: var(--kale-green); /* Green for "Kale" */
+        }
+        
+        /* Menu Section */
+        .menu-section {
+            padding: 8rem 2rem 4rem;
+            min-height: 100vh;
+            background: rgba(237,233,208,0.97);
+        }
+
+        .menu-category {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .menu-item {
+            padding: 1.5rem;
+            border-left: 4px solid var(--kale-green);
+            transition: transform 0.3s;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .menu-item h3 {
+            color: var(--kale-green); 
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .menu-item p {
+            color: var(--kale-green); 
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+        
+        .menu-item:hover {
+            transform: translateX(10px);
+        }
+
+        .price {
+            float: right;
+            color: var(--kale-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 8rem 2rem;
+            min-height: 100vh;
+            background: var(--kale-green);
+            display: flex;
+            align-items: center;
+        }
+        
+        .mission-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .mission-card h2 {
+            font-size: 2rem;
+        }
+
+        .mission-card p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 2rem;
+            background: var(--cream);
+            color: var(--kale-green);
+            text-align: center;
+            min-height: 50vh;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Buttons */
+        button {
+            background: var(--kale-green);
+            color: var(--cream);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: rgba(72,106,71,0.9);
+        }
+
+        /* Notification Container */
+        .notification-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Space between notifications */
+            z-index: 1000;
+        }
+
+        /* Notification */
+        .notification {
+            background: var(--kale-green);
+            color: var(--cream);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .notification.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- Static Navigation -->
+    <nav class="top-nav">
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#mission">Mission</a>
+            <a href="#contact">Contact</a>
+            <a href="references.html">References</a> <!-- New References link -->
+        </div>
+        <!-- Shopping Cart Icon -->
+        <a href="cart.html" class="cart-icon">
+            🛒
+            <span class="cart-count" id="cart-count">0</span> <!-- Cart item count -->
+        </a>
+    </nav>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notification-container">
+        <!-- Notifications will be dynamically added here -->
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1 class="fade-in">Kaleidoscope Cafe</h1>
+        <p class="fade-in" style="font-size: 1.5rem; max-width: 600px; margin: 1rem;">
+            Where familiar flavors meet plant-powered possibilities
+        </p>
+        <div class="scroll-prompt fade-in">↓</div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="menu-category fade-in">
+            <h2 style="color: var(--kale-green); margin-bottom: 2rem;">☕ Drinks & Smoothies</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Green Revival Juice <span class="price">$5.50</span></h3>
+                    <p>Kale, apple, celery, lemon, ginger</p>
+                    <button onclick="addToCart('Green Revival Juice', 5.50)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Sunrise Smoothie <span class="price">$6.75</span></h3>
+                    <p>Mango, pineapple, banana, spinach</p>
+                    <button onclick="addToCart('Sunrise Smoothie', 6.75)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Chai Latte <span class="price">$4.50</span></h3>
+                    <p>Spiced chai with oat milk</p>
+                    <button onclick="addToCart('Chai Latte', 4.50)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category fade-in">
+            <h2 style="color: var(--kale-green); margin-bottom: 2rem;">🥗 Starters & Shares</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Triple Dip Trio <span class="price">$8.50</span></h3>
+                    <p>Hummus, kale artichoke, roasted red pepper with pita</p>
+                    <button onclick="addToCart('Triple Dip Trio', 8.50)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Crunchy Spring Rolls <span class="price">$7.00</span></h3>
+                    <p>With peanut dipping sauce</p>
+                    <button onclick="addToCart('Crunchy Spring Rolls', 7.00)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Salad Sampler <span class="price">$9.00</span></h3>
+                    <p>Three mini salads of the day</p>
+                    <button onclick="addToCart('Salad Sampler', 9.00)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category fade-in">
+            <h2 style="color: var(--kale-green); margin-bottom: 2rem;">🍲 Main Events</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Spaghetti Squash Primavera <span class="price">$14.00</span></h3>
+                    <p>With marinara, roasted veggies, and cashew "parm"</p>
+                    <button onclick="addToCart('Spaghetti Squash Primavera', 14.00)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Stuffed Bell Peppers <span class="price">$13.50</span></h3>
+                    <p>Quinoa, black beans, corn, and avocado crema</p>
+                    <button onclick="addToCart('Stuffed Bell Peppers', 13.50)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="mission-section">
+        <div class="mission-card fade-in">
+            <h2>Our Promise</h2>
+            <p>
+                Stay sustainable, welcoming people into plant-based meals by offering alternatives to classic meals while not having too far-out dishes that might scare people off. Create a place for people to connect and share experiences together, fostering a warm and inviting atmosphere where everyone feels at home. Just like Panera, but with a greener twist.
+            </p>
+            <div style="margin-top: 2rem;">
+                <h3>Why We Exist</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin: 1rem 0;">✓ Comfort food without compromise</li>
+                    <li style="margin: 1rem 0;">✓ Community tables & free WiFi</li>
+                    <li style="margin: 1rem 0;">✓ Weekly vegan baking workshops</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="fade-in">
+            <h2>Find Your Seat</h2>
+            <p>123 Green Leaf Lane<br>
+            Open Daily 7AM-9PM</p>
+            <div style="margin: 2rem 0;">
+                <a href="tel:123-456-7890" style="color: var(--kale-green); text-decoration: none;">☎ (123) 456-7890</a><br>
+                <a href="mailto:hello@kaleidoscope.cafe" style="color: var(--kale-green); text-decoration: none;">📩 hello@kaleidoscope.cafe</a>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <button>Follow on Instagram</button>
+                <button>Join Newsletter</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Shopping Cart Functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(item, price) {
+            const existingItem = cart.find(cartItem => cartItem.item === item);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ item, price, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+
+            // Show notification
+            showNotification(`${item} added to cart!`);
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        // Notification Functionality
+        function showNotification(message) {
+            const notificationContainer = document.getElementById('notification-container');
+            const notification = document.createElement('div');
+            notification.classList.add('notification');
+            notification.textContent = message;
+
+            // Add notification to the container
+            notificationContainer.appendChild(notification);
+
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10); // Small delay to trigger CSS transition
+
+            // Hide notification after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove(); // Remove from DOM after fade-out
+                }, 300); // Wait for fade-out animation to finish
+            }, 5000); // 5 seconds
+        }
+
+        // Update cart count on page load
+        updateCartCount();
+    </script>
+</body>
+</html>
