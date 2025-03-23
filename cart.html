@@ -48,9 +48,8 @@
         .container {
             display: flex;
             justify-content: space-between;
-            width: 90%;
+            width: 80%;
             margin-top: 100px;
-            flex-direction: column; /* Stack vertically on mobile */
         }
 
         .menu, .cart {
@@ -58,15 +57,14 @@
             border-radius: 10px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
             background: white;
-            margin-bottom: 20px; /* Add space between menu and cart */
         }
 
         .menu {
-            width: 100%; /* Full width on mobile */
+            width: 50%;
         }
 
         .cart {
-            width: 100%; /* Full width on mobile */
+            width: 40%;
             background: #ddd;
             font-family: 'Winky Sans', sans-serif;
         }
@@ -93,13 +91,12 @@
 
         button {
             cursor: pointer;
-            padding: 10px 15px; /* Larger padding for touch screens */
+            padding: 5px 10px;
             border: none;
             background: rgb(72, 106, 71);
             color: white;
             border-radius: 5px;
             transition: background-color 0.3s ease;
-            font-size: 16px; /* Larger font size for buttons */
         }
 
         button:hover {
@@ -142,32 +139,6 @@
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
-        }
-
-        /* Media Queries for Mobile */
-        @media (max-width: 768px) {
-            .container {
-                width: 100%; /* Full width on mobile */
-                padding: 10px;
-            }
-
-            .menu, .cart {
-                padding: 15px; /* Smaller padding on mobile */
-            }
-
-            .menu-item, .cart-item {
-                font-size: 14px; /* Smaller font size for menu items */
-            }
-
-            button {
-                padding: 8px 12px; /* Smaller padding for buttons */
-                font-size: 14px; /* Smaller font size for buttons */
-            }
-
-            .item-info, .cart-item-info {
-                width: 150px; /* Smaller tooltip width */
-                font-size: 12px; /* Smaller font size for tooltips */
-            }
         }
     </style>
 </head>
