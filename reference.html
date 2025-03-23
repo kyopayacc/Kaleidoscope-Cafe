@@ -18,75 +18,158 @@
             font-family: 'Anybody', sans-serif;
             background: var(--cream);
             color: var(--kale-green);
+            scroll-behavior: smooth;
         }
 
-        .references-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-        }
-
-        h1 {
-            color: var(--kale-green);
-            text-align: center;
-        }
-
-        .reference-item {
-            margin: 1.5rem 0;
-            padding: 1rem;
-            border-left: 3px solid var(--kale-green);
-        }
-
-        /* Reuse navigation styles from index.html */
+        /* Navigation Bar (Same as index.html) */
         .top-nav {
-            padding: 1rem;
+            padding: 1rem 2rem;
             background: var(--kale-green);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .nav-links {
             display: flex;
             gap: 1.5rem;
+            align-items: center;
         }
 
         .top-nav a {
             color: var(--cream);
             text-decoration: none;
-            padding: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .top-nav a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* References Container */
+        .references-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--kale-green);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .reference-item {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-left: 4px solid var(--kale-green);
+            background: rgba(237,233,208,0.2);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .reference-item:hover {
+            transform: translateX(10px);
+        }
+
+        .reference-item h3 {
+            color: var(--kale-green);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.5rem;
+        }
+
+        .reference-item p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .reference-item a {
+            color: var(--kale-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .reference-item a:hover {
+            color: #4caf50;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .references-container {
+                margin: 2rem 1rem;
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .reference-item {
+                padding: 1rem;
+            }
+
+            .reference-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .reference-item p {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar (Same as index.html) -->
     <nav class="top-nav">
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="references.html">References</a>
+        <div class="nav-links" id="nav-links">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#menu">Menu</a>
+            <a href="index.html#mission">Mission</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="reference.html">References</a>
         </div>
     </nav>
 
+    <!-- References Content -->
     <div class="references-container">
         <h1>References & Credits</h1>
 
+        <!-- Background Image Reference -->
         <div class="reference-item">
             <h3>Background Image</h3>
             <p>Stock photo by shawnanggg from Unsplash</p>
-            <a href="https://unsplash.com/photos/brown-and-gray-concrete-store-nmpW_WwwVSc">Unsplash.com</a>
+            <a href="https://unsplash.com/photos/brown-and-gray-concrete-store-nmpW_WwwVSc" target="_blank">View on Unsplash</a>
         </div>
 
+        <!-- Creative Director Reference -->
         <div class="reference-item">
             <h3>Creative Director</h3>
-            <p>Boston Hammond - Senior at Hazelwood                       West High</p>
-            <a href="https://www.instagram.com/p/DBXCeJsJrHn/?img_index=4">Instagram</a>
+            <p>Boston Hammond - Senior at Hazelwood West High</p>
+            <a href="https://www.instagram.com/p/DBXCeJsJrHn/?img_index=4" target="_blank">View on Instagram</a>
         </div>
 
+        <!-- Website Design Reference -->
         <div class="reference-item">
             <h3>Website Design</h3>
-            <p>Luan Hoang - Junior at Hazelwood West                     High</p>
-            <a href="hhttps://github.com/luhoan">Github</a>
+            <p>Luan Hoang - Junior at Hazelwood West High</p>
+            <a href="https://github.com/luhoan" target="_blank">View on GitHub</a>
             <p>Huy Dinh - Junior at Hazelwood West High</p>
-            <a href="https://github.com/kyopayacc">Github</a>
+            <a href="https://github.com/kyopayacc" target="_blank">View on GitHub</a>
         </div>
     </div>
 </body>
